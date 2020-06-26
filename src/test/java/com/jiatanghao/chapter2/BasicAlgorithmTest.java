@@ -23,4 +23,14 @@ class BasicAlgorithmTest {
         Assertions.assertEquals(5, BasicAlgorithm.linearSearch(array, 3));
         Assertions.assertEquals(-1, BasicAlgorithm.linearSearch(array, 7));
     }
+
+    @Test
+    void binaryAdd() {
+        int[] a = {1, 0, 1, 1};
+        int[] b = {1, 1};
+        int[] c = {1, 1, 1};
+        Assertions.assertArrayEquals(new int[] {1, 1, 1, 0}, BasicAlgorithm.binaryAdd(a, b));
+        Assertions.assertArrayEquals(new int[] {1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(a, c));
+        Assertions.assertArrayEquals(new int[] {1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(c, a));
+    }
 }
