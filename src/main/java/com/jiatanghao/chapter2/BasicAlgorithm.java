@@ -64,4 +64,28 @@ public class BasicAlgorithm {
         result[0] = 1;
         return result;
     }
+
+    /**
+     * 选择排序
+     * @param array 待排序的数组
+     */
+    public static void selectSort(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            int min = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] < array[min]) {
+                    min = j;
+                }
+            }
+            swap(array, i, min);
+        }
+    }
+
+    private static void swap(int[] array, int i, int min) {
+        if (min != i) {
+            int tmp = array[i];
+            array[i] = array[min];
+            array[min] = tmp;
+        }
+    }
 }
