@@ -42,4 +42,11 @@ class BasicAlgorithmTest {
         BasicAlgorithm.selectSort(array);
         Assertions.assertArrayEquals(sortedArray, array);
     }
+
+    @Test
+    void mergeSort() {
+        final int[] array = {5, 2, 4, 6, 1, 3};
+        BasicAlgorithm.mergeSort(array);
+        Assertions.assertArrayEquals(sortedArray, array);
+    }
 }

@@ -88,4 +88,55 @@ public class BasicAlgorithm {
             array[min] = tmp;
         }
     }
+
+    /**
+     * 对外提供的归并排序的接口
+     * @param array 待排序数组
+     */
+    public static void mergeSort(int[] array) {
+        mergeSort(array, 0, array.length - 1);
+    }
+
+    /**
+     * 对数组某一段进行归并排序
+     * @param array 待排序数组
+     * @param p 起始点
+     * @param r 结束点
+     */
+    private static void mergeSort(int[] array, int p, int r) {
+        if (p < r) {
+            int q = p + ((r - p) >> 1);
+            mergeSort(array, p, q);
+            mergeSort(array, q + 1, r);
+            merge(array, p, q, r);
+        }
+    }
+
+    /**
+     * 两段归并 A[p, q] 和 A[q + 1, r]，两段已经分别排好序
+     * @param array 前后两段排好序的数组
+     * @param p 起始点
+     * @param q 分割点
+     * @param r 结束点
+     */
+    private static void merge(int[] array, int p, int q, int r) {
+        int n1 = q - p + 1;
+        int n2 = r - q;
+        int[] left = new int[n1 + 1];
+        int[] right = new int[n2 + 1];
+        System.arraycopy(array, p, left, 0, n1);
+        System.arraycopy(array, q + 1, right, 0, n2);
+        left[n1] = Integer.MAX_VALUE;
+        right[n2] = Integer.MAX_VALUE;
+        int i = 0, j = 0;
+        for (int k = p; k <= r; k++) {
+            if (left[i] < right[j]) {
+                array[k] = left[i];
+                i++;
+            } else {
+                array[k] = right[j];
+                j++;
+            }
+        }
+    }
 }
