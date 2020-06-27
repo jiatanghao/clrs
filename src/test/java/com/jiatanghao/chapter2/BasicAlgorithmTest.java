@@ -31,9 +31,9 @@ class BasicAlgorithmTest {
         int[] a = {1, 0, 1, 1};
         int[] b = {1, 1};
         int[] c = {1, 1, 1};
-        Assertions.assertArrayEquals(new int[] {1, 1, 1, 0}, BasicAlgorithm.binaryAdd(a, b));
-        Assertions.assertArrayEquals(new int[] {1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(a, c));
-        Assertions.assertArrayEquals(new int[] {1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(c, a));
+        Assertions.assertArrayEquals(new int[]{1, 1, 1, 0}, BasicAlgorithm.binaryAdd(a, b));
+        Assertions.assertArrayEquals(new int[]{1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(a, c));
+        Assertions.assertArrayEquals(new int[]{1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(c, a));
     }
 
     @Test
@@ -47,6 +47,13 @@ class BasicAlgorithmTest {
     void mergeSort() {
         final int[] array = {5, 2, 4, 6, 1, 3};
         BasicAlgorithm.mergeSort(array);
+        Assertions.assertArrayEquals(sortedArray, array);
+    }
+
+    @Test
+    void mergeSortWithoutSentry() {
+        final int[] array = {5, 2, 4, 6, 1, 3};
+        BasicAlgorithm.mergeSortWithoutSentry(array);
         Assertions.assertArrayEquals(sortedArray, array);
     }
 }

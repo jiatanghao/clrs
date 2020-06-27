@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class BasicAlgorithm {
     /**
      * 插入排序
+     *
      * @param array 待排序的数组
      */
     public static void insertSort(int[] array) {
@@ -21,8 +22,9 @@ public class BasicAlgorithm {
 
     /**
      * 线性查找算法
+     *
      * @param array 待查找的数组
-     * @param key 待查找的值
+     * @param key   待查找的值
      * @return 所在的第一个索引
      */
     public static int linearSearch(int[] array, int key) {
@@ -38,6 +40,7 @@ public class BasicAlgorithm {
 
     /**
      * 两个二进制正整数的加法
+     *
      * @param a 加数
      * @param b 被加数
      * @return 和
@@ -67,6 +70,7 @@ public class BasicAlgorithm {
 
     /**
      * 选择排序
+     *
      * @param array 待排序的数组
      */
     public static void selectSort(int[] array) {
@@ -91,6 +95,7 @@ public class BasicAlgorithm {
 
     /**
      * 对外提供的归并排序的接口
+     *
      * @param array 待排序数组
      */
     public static void mergeSort(int[] array) {
@@ -99,9 +104,10 @@ public class BasicAlgorithm {
 
     /**
      * 对数组某一段进行归并排序
+     *
      * @param array 待排序数组
-     * @param p 起始点
-     * @param r 结束点
+     * @param p     起始点
+     * @param r     结束点
      */
     private static void mergeSort(int[] array, int p, int r) {
         if (p < r) {
@@ -114,10 +120,12 @@ public class BasicAlgorithm {
 
     /**
      * 两段归并 A[p, q] 和 A[q + 1, r]，两段已经分别排好序
+     * 使用哨兵
+     *
      * @param array 前后两段排好序的数组
-     * @param p 起始点
-     * @param q 分割点
-     * @param r 结束点
+     * @param p     起始点
+     * @param q     分割点
+     * @param r     结束点
      */
     private static void merge(int[] array, int p, int q, int r) {
         int n1 = q - p + 1;
@@ -136,6 +144,69 @@ public class BasicAlgorithm {
             } else {
                 array[k] = right[j];
                 j++;
+            }
+        }
+    }
+
+    /**
+     * 对外提供的归并排序的接口
+     * 无哨兵
+     *
+     * @param array 待排序数组
+     */
+    public static void mergeSortWithoutSentry(int[] array) {
+        mergeSortWithoutSentry(array, 0, array.length - 1);
+    }
+
+    /**
+     * 对数组某一段进行归并排序
+     * 无哨兵
+     *
+     * @param array 待排序数组
+     * @param p     起始点
+     * @param r     结束点
+     */
+    private static void mergeSortWithoutSentry(int[] array, int p, int r) {
+        if (p < r) {
+            int q = p + ((r - p) >> 1);
+            mergeSortWithoutSentry(array, p, q);
+            mergeSortWithoutSentry(array, q + 1, r);
+            mergeWithoutSentry(array, p, q, r);
+        }
+    }
+
+    /**
+     * 两段归并 A[p, q] 和 A[q + 1, r]，两段已经分别排好序
+     * 不使用哨兵
+     *
+     * @param array 前后两段排好序的数组
+     * @param p     起始点
+     * @param q     分割点
+     * @param r     结束点
+     */
+    private static void mergeWithoutSentry(int[] array, int p, int q, int r) {
+        int n1 = q - p + 1;
+        int n2 = r - q;
+        int[] left = new int[n1];
+        int[] right = new int[n2];
+        System.arraycopy(array, p, left, 0, n1);
+        System.arraycopy(array, q + 1, right, 0, n2);
+        int i = 0, j = 0;
+        for (int k = p; k <= r; k++) {
+            if (i < n1 && j < n2) {
+                if (left[i] < right[j]) {
+                    array[k] = left[i];
+                    i++;
+                } else {
+                    array[k] = right[j];
+                    j++;
+                }
+            } else if (i == n1) {
+                System.arraycopy(right, j, array, k, n2 - j);
+                break;
+            } else if (j == n2) {
+                System.arraycopy(left, i, array, k, n1 - i);
+                break;
             }
         }
     }
