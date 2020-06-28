@@ -224,7 +224,34 @@ public class BasicAlgorithm {
         }
     }
 
+    /**
+     * 插入排序递归版
+     * @param array 待排序的数组
+     */
     public static void insertSortRecursively(int[] array) {
         insertSortRecursively(array, array.length);
+    }
+
+    /**
+     * 二分查找
+     * @param array 要查找的数组
+     * @param key 要找到的值
+     * @return 值所在的索引
+     */
+    public static int binarySearch(int[] array, int key) {
+        int lo = 0, hi = array.length- 1;
+        int result = -1;
+        while (lo <= hi) {
+            int mid = lo + ((hi - lo) >> 1);
+            if (array[mid] == key) {
+                result = mid;
+                break;
+            } else if (array[mid] < key) {
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        return result;
     }
 }

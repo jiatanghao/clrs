@@ -63,4 +63,18 @@ class BasicAlgorithmTest {
         BasicAlgorithm.insertSortRecursively(array);
         Assertions.assertArrayEquals(sortedArray, array);
     }
+
+    @Test
+    void binarySearch() {
+        final int[] array = {1, 2, 3, 4, 5, 6, 7, 8};
+        Assertions.assertEquals(0, BasicAlgorithm.binarySearch(array, 1));
+        Assertions.assertEquals(1, BasicAlgorithm.binarySearch(array, 2));
+        Assertions.assertEquals(2, BasicAlgorithm.binarySearch(array, 3));
+        Assertions.assertEquals(3, BasicAlgorithm.binarySearch(array, 4));
+        Assertions.assertEquals(4, BasicAlgorithm.binarySearch(array, 5));
+        Assertions.assertEquals(5, BasicAlgorithm.binarySearch(array, 6));
+        Assertions.assertEquals(6, BasicAlgorithm.binarySearch(array, 7));
+        Assertions.assertEquals(7, BasicAlgorithm.binarySearch(array, 8));
+        Assertions.assertEquals(-1, BasicAlgorithm.linearSearch(array, 9));
+    }
 }
