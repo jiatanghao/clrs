@@ -56,4 +56,11 @@ class BasicAlgorithmTest {
         BasicAlgorithm.mergeSortWithoutSentry(array);
         Assertions.assertArrayEquals(sortedArray, array);
     }
+
+    @Test
+    void insertSortRecursively() {
+        final int[] array = {5, 2, 4, 6, 1, 3};
+        BasicAlgorithm.insertSortRecursively(array);
+        Assertions.assertArrayEquals(sortedArray, array);
+    }
 }

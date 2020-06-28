@@ -210,4 +210,21 @@ public class BasicAlgorithm {
             }
         }
     }
+
+    private static void insertSortRecursively(int[] array, int n) {
+        if (n > 1) {
+            insertSortRecursively(array, n - 1);
+            int key = array[n - 1];
+            int index = n - 2;
+            while (index >= 0 && key < array[index]) {
+                array[index + 1] = array[index];
+                index--;
+            }
+            array[index + 1] = key;
+        }
+    }
+
+    public static void insertSortRecursively(int[] array) {
+        insertSortRecursively(array, array.length);
+    }
 }
