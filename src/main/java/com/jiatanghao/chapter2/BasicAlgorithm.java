@@ -5,19 +5,34 @@ import java.util.Arrays;
 public class BasicAlgorithm {
     /**
      * 插入排序
-     *
+     * 使用二分查找优化了部分效率，但实际复杂度仍为O(n^2)
      * @param array 待排序的数组
      */
     public static void insertSort(int[] array) {
         for (int i = 1; i < array.length; i++) {
-            int key = array[i];
-            int j = i - 1;
-            while (j >= 0 && array[j] > key) {
-                array[j + 1] = array[j];
-                j--;
+            int insertLocation = binarySearchForInsertSort(array, 0, i - 1, array[i]);
+            if (insertLocation != i) {
+                int current = array[i];
+                System.arraycopy(array, insertLocation, array, insertLocation + 1, i - insertLocation);
+                array[insertLocation] = current;
             }
-            array[j + 1] = key;
         }
+    }
+
+    private static int binarySearchForInsertSort(int[] array, int lo, int hi, int key) {
+        int left = lo, right = hi;
+        if (array[right] < key) {
+            return right + 1;
+        }
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (array[mid] >= key) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
     }
 
     /**
