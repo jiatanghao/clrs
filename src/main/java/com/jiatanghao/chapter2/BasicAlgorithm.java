@@ -283,4 +283,21 @@ public class BasicAlgorithm {
             }
         }
     }
+
+    /**
+     * 查找数组中是否有两个数之和等给定值
+     * @param array 待查找的数组
+     * @param x 给定值
+     * @return 是否找到
+     */
+    public static boolean hasTwoSumInArray(int[] array, int x) {
+        mergeSort(array);
+        for (int i = 0; i < array.length; i++) {
+            int find = binarySearch(array, x - array[i]);
+            if (find > -1 && find != i) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

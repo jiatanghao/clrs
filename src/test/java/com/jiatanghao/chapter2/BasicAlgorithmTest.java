@@ -84,4 +84,20 @@ class BasicAlgorithmTest {
         BasicAlgorithm.bubbleSort(array);
         Assertions.assertArrayEquals(sortedArray, array);
     }
+
+    @Test
+    void hasTwoSumInArray() {
+        final int[] array = {5, 2, 4, 6, 1, 3};
+        Assertions.assertFalse(BasicAlgorithm.hasTwoSumInArray(array, 2));
+        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 3));
+        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 4));
+        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 5));
+        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 6));
+        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 7));
+        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 8));
+        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 9));
+        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 10));
+        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 11));
+        Assertions.assertFalse(BasicAlgorithm.hasTwoSumInArray(array, 12));
+    }
 }
