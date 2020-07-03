@@ -77,4 +77,11 @@ class BasicAlgorithmTest {
         Assertions.assertEquals(7, BasicAlgorithm.binarySearch(array, 8));
         Assertions.assertEquals(-1, BasicAlgorithm.linearSearch(array, 9));
     }
+
+    @Test
+    void bubbleSort() {
+        final int[] array = {5, 2, 4, 6, 1, 3};
+        BasicAlgorithm.bubbleSort(array);
+        Assertions.assertArrayEquals(sortedArray, array);
+    }
 }

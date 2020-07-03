@@ -10,7 +10,7 @@ public class BasicAlgorithm {
      */
     public static void insertSort(int[] array) {
         for (int i = 1; i < array.length; i++) {
-            int insertLocation = binarySearchForInsertSort(array, 0, i - 1, array[i]);
+            int insertLocation = binarySearchForInsertSort(array, i - 1, array[i]);
             if (insertLocation != i) {
                 int current = array[i];
                 System.arraycopy(array, insertLocation, array, insertLocation + 1, i - insertLocation);
@@ -19,8 +19,8 @@ public class BasicAlgorithm {
         }
     }
 
-    private static int binarySearchForInsertSort(int[] array, int lo, int hi, int key) {
-        int left = lo, right = hi;
+    private static int binarySearchForInsertSort(int[] array, int hi, int key) {
+        int left = 0, right = hi;
         if (array[right] < key) {
             return right + 1;
         }
@@ -100,11 +100,11 @@ public class BasicAlgorithm {
         }
     }
 
-    private static void swap(int[] array, int i, int min) {
-        if (min != i) {
+    private static void swap(int[] array, int i, int j) {
+        if (j != i) {
             int tmp = array[i];
-            array[i] = array[min];
-            array[min] = tmp;
+            array[i] = array[j];
+            array[j] = tmp;
         }
     }
 
@@ -268,5 +268,19 @@ public class BasicAlgorithm {
             }
         }
         return result;
+    }
+
+    /**
+     * 冒泡排序
+     * @param array 待排序数组
+     */
+    public static void bubbleSort(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = 1; j < array.length -i; j++) {
+                if (array[j] < array[j - 1]) {
+                    swap(array, j, j - 1);
+                }
+            }
+        }
     }
 }
