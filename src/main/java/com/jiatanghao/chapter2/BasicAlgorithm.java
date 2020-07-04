@@ -6,6 +6,7 @@ public class BasicAlgorithm {
     /**
      * 插入排序
      * 使用二分查找优化了部分效率，但实际复杂度仍为O(n^2)
+     *
      * @param array 待排序的数组
      */
     public static void insertSort(int[] array) {
@@ -241,6 +242,7 @@ public class BasicAlgorithm {
 
     /**
      * 插入排序递归版
+     *
      * @param array 待排序的数组
      */
     public static void insertSortRecursively(int[] array) {
@@ -249,12 +251,13 @@ public class BasicAlgorithm {
 
     /**
      * 二分查找
+     *
      * @param array 要查找的数组
-     * @param key 要找到的值
+     * @param key   要找到的值
      * @return 值所在的索引
      */
     public static int binarySearch(int[] array, int key) {
-        int lo = 0, hi = array.length- 1;
+        int lo = 0, hi = array.length - 1;
         int result = -1;
         while (lo <= hi) {
             int mid = lo + ((hi - lo) >> 1);
@@ -272,11 +275,12 @@ public class BasicAlgorithm {
 
     /**
      * 冒泡排序
+     *
      * @param array 待排序数组
      */
     public static void bubbleSort(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
-            for (int j = 1; j < array.length -i; j++) {
+            for (int j = 1; j < array.length - i; j++) {
                 if (array[j] < array[j - 1]) {
                     swap(array, j, j - 1);
                 }
@@ -286,8 +290,9 @@ public class BasicAlgorithm {
 
     /**
      * 查找数组中是否有两个数之和等给定值
+     *
      * @param array 待查找的数组
-     * @param x 给定值
+     * @param x     给定值
      * @return 是否找到
      */
     public static boolean hasTwoSumInArray(int[] array, int x) {
@@ -299,5 +304,45 @@ public class BasicAlgorithm {
             }
         }
         return false;
+    }
+
+    /**
+     * 使用归并思想求逆序对
+     *
+     * @param array 待求的数组
+     * @return 逆序对个数
+     */
+    public static int reversedOrderedCount(int[] array) {
+        int length = array.length;
+        int[] copy = new int[length];
+        System.arraycopy(array, 0, copy, 0, length);
+        return reversedOrderedCount(array, copy, 0, length - 1);
+    }
+
+    private static int reversedOrderedCount(int[] array, int[] copy, int begin, int end) {
+        if (begin == end)
+            return 0;
+        int mid = begin + ((end - begin) >> 1);
+        // 递归调用
+        int left = reversedOrderedCount(copy, array, begin, mid);
+        int right = reversedOrderedCount(copy, array, mid + 1, end);
+        // 归并
+        int i = mid, j = end, pos = end;
+        int count = 0;
+        while (i >= begin && j >= mid + 1) {
+            if (array[i] > array[j]) {
+                copy[pos--] = array[i--];
+                count += j - mid;
+            } else {
+                copy[pos--] = array[j--];
+            }
+        }
+        while (i >= begin) {
+            copy[pos--] = array[i--];
+        }
+        while (j >= mid + 1) {
+            copy[pos--] = array[j--];
+        }
+        return left + right + count;
     }
 }

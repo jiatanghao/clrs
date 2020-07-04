@@ -100,4 +100,10 @@ class BasicAlgorithmTest {
         Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 11));
         Assertions.assertFalse(BasicAlgorithm.hasTwoSumInArray(array, 12));
     }
+
+    @Test
+    void reversedOrderedCount() {
+        final int[] array = {5, 2, 4, 6, 1, 3};
+        Assertions.assertEquals(9, BasicAlgorithm.reversedOrderedCount(array));
+    }
 }
