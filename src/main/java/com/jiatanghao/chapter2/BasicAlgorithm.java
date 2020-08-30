@@ -101,7 +101,7 @@ public class BasicAlgorithm {
         }
     }
 
-    private static void swap(int[] array, int i, int j) {
+    public static void swap(int[] array, int i, int j) {
         if (j != i) {
             int tmp = array[i];
             array[i] = array[j];
