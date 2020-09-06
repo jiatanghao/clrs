@@ -14,4 +14,12 @@ class QuickSortTest {
         QuickSort.quickSort(arr);
         Assertions.assertArrayEquals(result, arr);
     }
+
+    @Test
+    void randomQuickSort() {
+        int[] arr = {2, 8, 7, 1, 3, 5, 6, 4};
+        int[] result = {1, 2, 3, 4, 5, 6, 7, 8};
+        QuickSort.randomQuickSort(arr);
+        Assertions.assertArrayEquals(result, arr);
+    }
 }

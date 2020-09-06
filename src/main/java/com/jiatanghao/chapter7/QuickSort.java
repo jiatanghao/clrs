@@ -27,4 +27,22 @@ public class QuickSort {
         swap(arr, i + 1, r);
         return i + 1;
     }
+
+    private static int randomPartition(int[] arr, int p, int r) {
+        int i = (int) (Math.random() * (r - p + 1) + p);
+        swap(arr, r, i);
+        return partition(arr, p, r);
+    }
+
+    private static void randomQuickSort(int[] arr, int p, int r) {
+        if (p < r) {
+            int q = randomPartition(arr, p, r);
+            randomQuickSort(arr, p, q - 1);
+            randomQuickSort(arr, q + 1, r);
+        }
+    }
+
+    public static void randomQuickSort(int[] arr) {
+        randomQuickSort(arr, 0, arr.length - 1);
+    }
 }
