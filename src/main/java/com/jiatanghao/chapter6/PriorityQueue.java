@@ -10,6 +10,8 @@ public class PriorityQueue {
     public void insert(int data) {
         if (maximum < 0) {
             maximum = 0;
+            list.add(data);
+            return;
         }
         if (data > list.get(maximum)) {
             maximum = list.size();
@@ -18,15 +20,15 @@ public class PriorityQueue {
     }
 
     public int maximum() {
-        return maximum;
+        return list.get(maximum);
     }
 
     public int extractMax() {
         int result = list.remove(maximum);
-        int newMax = Integer.MIN_VALUE;
-        for (int data : list) {
-            if (data > newMax) {
-                newMax = data;
+        int newMax = 0;
+        for (int i = 1; i < list.size(); i++) {
+            if (list.get(newMax) < list.get(i)) {
+                newMax = i;
             }
         }
         maximum = newMax;
