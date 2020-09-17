@@ -81,4 +81,16 @@ public class QuickSort {
         result[1] = k + 1;
         return result;
     }
+
+    public static void tailRecursiveQuickSort(int[] arr) {
+        tailRecursiveQuickSort(arr, 0, arr.length - 1);
+    }
+
+    private static void tailRecursiveQuickSort(int[] arr, int p, int r) {
+        while (p < r) {
+            int q = randomPartition(arr, p, r);
+            tailRecursiveQuickSort(arr, p, q - 1);
+            p = q + 1;
+        }
+    }
 }
