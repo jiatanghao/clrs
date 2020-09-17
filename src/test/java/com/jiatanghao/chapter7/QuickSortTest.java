@@ -22,4 +22,12 @@ class QuickSortTest {
         QuickSort.randomQuickSort(arr);
         Assertions.assertArrayEquals(result, arr);
     }
+
+    @Test
+    void quickSortForSameValue() {
+        int[] arr = {2, 8, 7, 1, 2, 2, 6, 2};
+        int[] result = {1, 2, 2, 2, 2, 6, 7, 8};
+        QuickSort.quickSortForSameValue(arr);
+        Assertions.assertArrayEquals(result, arr);
+    }
 }
