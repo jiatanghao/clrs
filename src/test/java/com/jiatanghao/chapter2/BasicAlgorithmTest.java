@@ -1,7 +1,8 @@
 package com.jiatanghao.chapter2;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class BasicAlgorithmTest {
 
@@ -11,99 +12,101 @@ class BasicAlgorithmTest {
     void insertSort() {
         final int[] array = {5, 2, 4, 6, 1, 3};
         BasicAlgorithm.insertSort(array);
-        Assertions.assertArrayEquals(sortedArray, array);
+        assertArrayEquals(sortedArray, array);
     }
 
     @Test
     void linearSearch() {
         final int[] array = {5, 2, 4, 6, 1, 3};
-        Assertions.assertEquals(0, BasicAlgorithm.linearSearch(array, 5));
-        Assertions.assertEquals(1, BasicAlgorithm.linearSearch(array, 2));
-        Assertions.assertEquals(2, BasicAlgorithm.linearSearch(array, 4));
-        Assertions.assertEquals(3, BasicAlgorithm.linearSearch(array, 6));
-        Assertions.assertEquals(4, BasicAlgorithm.linearSearch(array, 1));
-        Assertions.assertEquals(5, BasicAlgorithm.linearSearch(array, 3));
-        Assertions.assertEquals(-1, BasicAlgorithm.linearSearch(array, 7));
+        assertEquals(0, BasicAlgorithm.linearSearch(array, 5));
+        assertEquals(1, BasicAlgorithm.linearSearch(array, 2));
+        assertEquals(2, BasicAlgorithm.linearSearch(array, 4));
+        assertEquals(3, BasicAlgorithm.linearSearch(array, 6));
+        assertEquals(4, BasicAlgorithm.linearSearch(array, 1));
+        assertEquals(5, BasicAlgorithm.linearSearch(array, 3));
+        assertEquals(-1, BasicAlgorithm.linearSearch(array, 7));
     }
 
     @Test
     void binaryAdd() {
         int[] a = {1, 0, 1, 1};
-        int[] b = {1, 1};
-        int[] c = {1, 1, 1};
-        Assertions.assertArrayEquals(new int[]{1, 1, 1, 0}, BasicAlgorithm.binaryAdd(a, b));
-        Assertions.assertArrayEquals(new int[]{1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(a, c));
-        Assertions.assertArrayEquals(new int[]{1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(c, a));
+        int[] b = {0, 0, 1, 1};
+        int[] c = {0, 1, 1, 1};
+        int[] d = {1};
+        assertArrayEquals(new int[]{0, 1, 1, 1, 0}, BasicAlgorithm.binaryAdd(a, b));
+        assertArrayEquals(new int[]{1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(a, c));
+        assertArrayEquals(new int[]{1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(c, a));
+        assertThrows(IllegalArgumentException.class, () -> BasicAlgorithm.binaryAdd(a, d), "数组长度不一致");
     }
 
     @Test
     void selectSort() {
         final int[] array = {5, 2, 4, 6, 1, 3};
         BasicAlgorithm.selectSort(array);
-        Assertions.assertArrayEquals(sortedArray, array);
+        assertArrayEquals(sortedArray, array);
     }
 
     @Test
     void mergeSort() {
         final int[] array = {5, 2, 4, 6, 1, 3};
         BasicAlgorithm.mergeSort(array);
-        Assertions.assertArrayEquals(sortedArray, array);
+        assertArrayEquals(sortedArray, array);
     }
 
     @Test
     void mergeSortWithoutSentry() {
         final int[] array = {5, 2, 4, 6, 1, 3};
         BasicAlgorithm.mergeSortWithoutSentry(array);
-        Assertions.assertArrayEquals(sortedArray, array);
+        assertArrayEquals(sortedArray, array);
     }
 
     @Test
     void insertSortRecursively() {
         final int[] array = {5, 2, 4, 6, 1, 3};
         BasicAlgorithm.insertSortRecursively(array);
-        Assertions.assertArrayEquals(sortedArray, array);
+        assertArrayEquals(sortedArray, array);
     }
 
     @Test
     void binarySearch() {
         final int[] array = {1, 2, 3, 4, 5, 6, 7, 8};
-        Assertions.assertEquals(0, BasicAlgorithm.binarySearch(array, 1));
-        Assertions.assertEquals(1, BasicAlgorithm.binarySearch(array, 2));
-        Assertions.assertEquals(2, BasicAlgorithm.binarySearch(array, 3));
-        Assertions.assertEquals(3, BasicAlgorithm.binarySearch(array, 4));
-        Assertions.assertEquals(4, BasicAlgorithm.binarySearch(array, 5));
-        Assertions.assertEquals(5, BasicAlgorithm.binarySearch(array, 6));
-        Assertions.assertEquals(6, BasicAlgorithm.binarySearch(array, 7));
-        Assertions.assertEquals(7, BasicAlgorithm.binarySearch(array, 8));
-        Assertions.assertEquals(-1, BasicAlgorithm.linearSearch(array, 9));
+        assertEquals(0, BasicAlgorithm.binarySearch(array, 1));
+        assertEquals(1, BasicAlgorithm.binarySearch(array, 2));
+        assertEquals(2, BasicAlgorithm.binarySearch(array, 3));
+        assertEquals(3, BasicAlgorithm.binarySearch(array, 4));
+        assertEquals(4, BasicAlgorithm.binarySearch(array, 5));
+        assertEquals(5, BasicAlgorithm.binarySearch(array, 6));
+        assertEquals(6, BasicAlgorithm.binarySearch(array, 7));
+        assertEquals(7, BasicAlgorithm.binarySearch(array, 8));
+        assertEquals(-1, BasicAlgorithm.linearSearch(array, 9));
     }
 
     @Test
     void bubbleSort() {
         final int[] array = {5, 2, 4, 6, 1, 3};
         BasicAlgorithm.bubbleSort(array);
-        Assertions.assertArrayEquals(sortedArray, array);
+        assertArrayEquals(sortedArray, array);
     }
 
     @Test
     void hasTwoSumInArray() {
         final int[] array = {5, 2, 4, 6, 1, 3};
-        Assertions.assertFalse(BasicAlgorithm.hasTwoSumInArray(array, 2));
-        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 3));
-        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 4));
-        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 5));
-        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 6));
-        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 7));
-        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 8));
-        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 9));
-        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 10));
-        Assertions.assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 11));
-        Assertions.assertFalse(BasicAlgorithm.hasTwoSumInArray(array, 12));
+        assertFalse(BasicAlgorithm.hasTwoSumInArray(array, 2));
+        assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 3));
+        assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 4));
+        assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 5));
+        assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 6));
+        assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 7));
+        assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 8));
+        assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 9));
+        assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 10));
+        assertTrue(BasicAlgorithm.hasTwoSumInArray(array, 11));
+        assertFalse(BasicAlgorithm.hasTwoSumInArray(array, 12));
     }
 
     @Test
     void reversedOrderedCount() {
         final int[] array = {5, 2, 4, 6, 1, 3};
-        Assertions.assertEquals(9, BasicAlgorithm.reversedOrderedCount(array));
+        assertEquals(9, BasicAlgorithm.reversedOrderedCount(array));
     }
 }

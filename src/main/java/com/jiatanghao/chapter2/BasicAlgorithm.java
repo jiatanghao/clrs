@@ -1,8 +1,9 @@
 package com.jiatanghao.chapter2;
 
-import java.util.Arrays;
-
 public class BasicAlgorithm {
+
+    private BasicAlgorithm() {
+    }
     /**
      * 插入排序
      * 使用二分查找优化了部分效率，但实际复杂度仍为O(n^2)
@@ -21,7 +22,8 @@ public class BasicAlgorithm {
     }
 
     private static int binarySearchForInsertSort(int[] array, int hi, int key) {
-        int left = 0, right = hi;
+        int left = 0;
+        int right = hi;
         if (array[right] < key) {
             return right + 1;
         }
@@ -62,25 +64,17 @@ public class BasicAlgorithm {
      * @return 和
      */
     public static int[] binaryAdd(int[] a, int[] b) {
-        if (a.length < b.length) {
-            return binaryAdd(b, a);
+        if (a.length != b.length) {
+            throw new IllegalArgumentException("数组长度不一致");
         }
         int[] result = new int[a.length + 1];
         int carry = 0;
-        for (int i = 0; i < b.length; i++) {
-            int tmp = carry + a[a.length - i - 1] + b[b.length - i - 1];
-            result[result.length - i - 1] = tmp % 2;
+        for (int i = a.length - 1; i >= 0; i--) {
+            int tmp = a[i] + b[i] + carry;
+            result[i + 1] = tmp % 2;
             carry = tmp / 2;
         }
-        for (int i = 0; i < a.length - b.length; i++) {
-            int tmp = carry + a[a.length - b.length - i - 1];
-            result[result.length - b.length - i - 1] = tmp % 2;
-            carry = tmp / 2;
-        }
-        if (carry == 0) {
-            return Arrays.copyOfRange(result, 1, result.length);
-        }
-        result[0] = 1;
+        result[0] = carry;
         return result;
     }
 
@@ -152,7 +146,8 @@ public class BasicAlgorithm {
         System.arraycopy(array, q + 1, right, 0, n2);
         left[n1] = Integer.MAX_VALUE;
         right[n2] = Integer.MAX_VALUE;
-        int i = 0, j = 0;
+        int i = 0;
+        int j = 0;
         for (int k = p; k <= r; k++) {
             if (left[i] < right[j]) {
                 array[k] = left[i];
@@ -207,7 +202,8 @@ public class BasicAlgorithm {
         int[] right = new int[n2];
         System.arraycopy(array, p, left, 0, n1);
         System.arraycopy(array, q + 1, right, 0, n2);
-        int i = 0, j = 0;
+        int i = 0;
+        int j = 0;
         for (int k = p; k <= r; k++) {
             if (i < n1 && j < n2) {
                 if (left[i] < right[j]) {
@@ -217,12 +213,13 @@ public class BasicAlgorithm {
                     array[k] = right[j];
                     j++;
                 }
-            } else if (i == n1) {
-                System.arraycopy(right, j, array, k, n2 - j);
-                break;
-            } else if (j == n2) {
-                System.arraycopy(left, i, array, k, n1 - i);
-                break;
+            } else {
+                if (i == n1) {
+                    System.arraycopy(right, j, array, k, n2 - j);
+                } else if (j == n2) {
+                    System.arraycopy(left, i, array, k, n1 - i);
+                }
+                return;
             }
         }
     }
@@ -257,7 +254,8 @@ public class BasicAlgorithm {
      * @return 值所在的索引
      */
     public static int binarySearch(int[] array, int key) {
-        int lo = 0, hi = array.length - 1;
+        int lo = 0;
+        int hi = array.length - 1;
         int result = -1;
         while (lo <= hi) {
             int mid = lo + ((hi - lo) >> 1);
@@ -324,10 +322,12 @@ public class BasicAlgorithm {
             return 0;
         int mid = begin + ((end - begin) >> 1);
         // 递归调用
-        int left = reversedOrderedCount(copy, array, begin, mid);
-        int right = reversedOrderedCount(copy, array, mid + 1, end);
+        int left = reversedOrderedCount(array, copy, begin, mid);
+        int right = reversedOrderedCount(array, copy, mid + 1, end);
         // 归并
-        int i = mid, j = end, pos = end;
+        int i = mid;
+        int j = end;
+        int pos = end;
         int count = 0;
         while (i >= begin && j >= mid + 1) {
             if (array[i] > array[j]) {

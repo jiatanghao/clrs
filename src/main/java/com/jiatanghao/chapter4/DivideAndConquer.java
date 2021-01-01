@@ -2,6 +2,9 @@ package com.jiatanghao.chapter4;
 
 public class DivideAndConquer {
 
+    private DivideAndConquer() {
+    }
+
     /**
      * 对外提供的查找最大子数组的方法
      * @param array 待查找的数组

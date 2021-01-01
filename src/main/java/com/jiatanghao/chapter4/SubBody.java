@@ -1,5 +1,7 @@
 package com.jiatanghao.chapter4;
 
+import java.util.Objects;
+
 public class SubBody {
     int left;
     int right;
@@ -19,5 +21,10 @@ public class SubBody {
         return left == subBody.left &&
                 right == subBody.right &&
                 value == subBody.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right, value);
     }
 }

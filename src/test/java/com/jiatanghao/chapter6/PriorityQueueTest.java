@@ -1,22 +1,23 @@
 package com.jiatanghao.chapter6;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class PriorityQueueTest {
 
     @Test
-    public void test() {
+    void test() {
         PriorityQueue priorityQueue = new PriorityQueue();
         priorityQueue.insert(10);
         priorityQueue.insert(20);
         priorityQueue.insert(15);
-        Assertions.assertEquals(20, priorityQueue.maximum());
-        Assertions.assertEquals(20, priorityQueue.extractMax());
+        assertEquals(20, priorityQueue.maximum());
+        assertEquals(20, priorityQueue.extractMax());
         priorityQueue.increaseKey(0, -10);
         priorityQueue.increaseKey(0, 30);
-        Assertions.assertEquals(30, priorityQueue.maximum());
+        assertEquals(30, priorityQueue.maximum());
     }
 
 }

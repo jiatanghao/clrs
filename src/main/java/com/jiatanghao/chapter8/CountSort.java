@@ -2,6 +2,8 @@ package com.jiatanghao.chapter8;
 
 public class CountSort {
 
+    private CountSort() {
+    }
     public static void countSort(int[] a, int k) {
         int[] c = new int[k + 1];
         for (int i = 1; i < a.length; i++) {

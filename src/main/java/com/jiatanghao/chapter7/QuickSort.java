@@ -1,8 +1,14 @@
 package com.jiatanghao.chapter7;
 
+import java.security.SecureRandom;
+
 import static com.jiatanghao.chapter2.BasicAlgorithm.swap;
 
 public class QuickSort {
+
+    private QuickSort() {
+    }
+
     public static void quickSort(int[] arr) {
         quickSort(arr, 0, arr.length - 1);
     }
@@ -29,7 +35,7 @@ public class QuickSort {
     }
 
     private static int randomPartition(int[] arr, int p, int r) {
-        int i = (int) (Math.random() * (r - p + 1) + p);
+        int i = new SecureRandom().nextInt(r - p + 1) + p;
         swap(arr, r, i);
         return partition(arr, p, r);
     }

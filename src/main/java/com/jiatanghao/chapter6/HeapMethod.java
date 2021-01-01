@@ -4,6 +4,9 @@ import static com.jiatanghao.chapter2.BasicAlgorithm.swap;
 
 public class HeapMethod {
 
+    private HeapMethod() {
+    }
+
     public static int parent(int i) {
         if (i <= 0) {
             return 0;
