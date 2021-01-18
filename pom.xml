@@ -12,7 +12,6 @@
         <sonar.login>admin</sonar.login>
         <sonar.password>940802</sonar.password>
         <sonar.java.libraries>target/classes</sonar.java.libraries>
-        <sonar.exclusions>**/*</sonar.exclusions>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
