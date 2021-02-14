@@ -128,6 +128,43 @@ public class BasicAlgorithm {
         }
     }
 
+    public static int inversion(int[] array, int p, int r) {
+        if (p < r) {
+            int q = p + ((r - p) >> 1);
+            int left = inversion(array, p, q);
+            int right = inversion(array, q + 1, r);
+            return left + right + inversionCount(array, p, q, r);
+        }
+        return 0;
+    }
+
+    public static int inversionCount(int[] array, int p, int q, int r) {
+        int[] left = new int[q - p + 2];
+        int[] right = new int[r - q + 1];
+        int i = 0;
+        int j = 0;
+        copyArray(array, p, q, left, right, q - p + 1, r - q);
+        int count = 0;
+        for (int k = p; k <= r; k++) {
+            if (left[i] < right[j]) {
+                array[k] = left[i];
+                i++;
+            } else {
+                array[k] = right[j];
+                j++;
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private static void copyArray(int[] array, int p, int q, int[] left, int[] right, int i2, int i3) {
+        System.arraycopy(array, p, left, 0, i2);
+        System.arraycopy(array, q + 1, right, 0, i3);
+        left[i2] = Integer.MAX_VALUE;
+        right[i3] = Integer.MAX_VALUE;
+    }
+
     /**
      * 两段归并 A[p, q] 和 A[q + 1, r]，两段已经分别排好序
      * 使用哨兵
@@ -138,16 +175,11 @@ public class BasicAlgorithm {
      * @param r     结束点
      */
     private static void merge(int[] array, int p, int q, int r) {
-        int n1 = q - p + 1;
-        int n2 = r - q;
-        int[] left = new int[n1 + 1];
-        int[] right = new int[n2 + 1];
-        System.arraycopy(array, p, left, 0, n1);
-        System.arraycopy(array, q + 1, right, 0, n2);
-        left[n1] = Integer.MAX_VALUE;
-        right[n2] = Integer.MAX_VALUE;
         int i = 0;
         int j = 0;
+        int[] left = new int[q - p + 2];
+        int[] right = new int[r - q + 1];
+        copyArray(array, p, q, left, right, q - p + 1, r - q);
         for (int k = p; k <= r; k++) {
             if (left[i] < right[j]) {
                 array[k] = left[i];
