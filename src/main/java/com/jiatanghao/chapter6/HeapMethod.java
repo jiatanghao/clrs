@@ -23,20 +23,24 @@ public class HeapMethod {
     }
 
     public static void maxHeapify(int[] array, int i, int n) {
-        int l = left(i);
-        int r = right(i);
-        int largest;
-        if (l < n && array[i] < array[l]) {
-            largest = l;
-        } else {
-            largest = i;
-        }
-        if (r < n && array[largest] < array[r]) {
-            largest = r;
-        }
-        if (i != largest) {
-            swap(array, i, largest);
-            maxHeapify(array, largest, n);
+        while (true) {
+            int l = left(i);
+            int r = right(i);
+            int largest;
+            if (l < n && array[i] < array[l]) {
+                largest = l;
+            } else {
+                largest = i;
+            }
+            if (r < n && array[largest] < array[r]) {
+                largest = r;
+            }
+            if (i == largest) {
+                return;
+            } else {
+                swap(array, i, largest);
+                i = largest;
+            }
         }
     }
 
