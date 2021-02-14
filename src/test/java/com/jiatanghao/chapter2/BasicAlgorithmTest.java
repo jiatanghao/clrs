@@ -36,8 +36,7 @@ class BasicAlgorithmTest {
         assertArrayEquals(new int[]{0, 1, 1, 1, 0}, BasicAlgorithm.binaryAdd(a, b));
         assertArrayEquals(new int[]{1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(a, c));
         assertArrayEquals(new int[]{1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(c, a));
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> BasicAlgorithm.binaryAdd(a, d), "数组长度不一致");
-        assertEquals("数组长度不一致", exception.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> BasicAlgorithm.binaryAdd(a, d), "数组长度不一致");
     }
 
     @Test
@@ -80,12 +79,6 @@ class BasicAlgorithmTest {
         assertEquals(6, BasicAlgorithm.binarySearch(array, 7));
         assertEquals(7, BasicAlgorithm.binarySearch(array, 8));
         assertEquals(-1, BasicAlgorithm.linearSearch(array, 9));
-    }
-
-    @Test
-    void inversion() {
-        final int[] array = {5, 2, 4, 6, 1, 3};
-        assertEquals(7, BasicAlgorithm.inversion(array, 0, 5));
     }
 
     @Test
