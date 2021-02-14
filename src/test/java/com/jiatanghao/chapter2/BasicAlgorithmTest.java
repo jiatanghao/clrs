@@ -109,4 +109,11 @@ class BasicAlgorithmTest {
         final int[] array = {5, 2, 4, 6, 1, 3};
         assertEquals(9, BasicAlgorithm.reversedOrderedCount(array));
     }
+
+    @Test
+    void testHornerRule() {
+        final double[] array = {0, 1, 2, 3};
+        assertEquals(6, BasicAlgorithm.hornerRule(array, 1));
+        assertEquals(11, BasicAlgorithm.hornerRule(array, 2));
+    }
 }

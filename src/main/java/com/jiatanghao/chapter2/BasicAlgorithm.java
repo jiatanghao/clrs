@@ -345,4 +345,12 @@ public class BasicAlgorithm {
         }
         return left + right + count;
     }
+
+    public static double hornerRule(double[] a, double x) {
+        double result = 0;
+        for (double v : a) {
+            result = v + x * result;
+        }
+        return result;
+    }
 }
