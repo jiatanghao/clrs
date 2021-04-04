@@ -173,7 +173,7 @@ public class BasicAlgorithm {
         int i = 0;
         int j = 0;
         for (int k = p; k <= r; k++) {
-            if (left[i] < right[j]) {
+            if (left[i] <= right[j]) {
                 array[k] = left[i];
                 i++;
             } else {
