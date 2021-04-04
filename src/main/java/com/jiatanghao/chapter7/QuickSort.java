@@ -53,13 +53,13 @@ public class QuickSort {
     }
 
     public static void quickSortForSameValue(int[] arr) {
-        quickSortForSameValue(arr, 0, arr.length - 1);
+        quickSortForSameValue(arr, arr.length - 1);
     }
 
-    private static void quickSortForSameValue(int[] arr, int p, int r) {
-        if (p < r) {
-            int[] partition = partitionForSameValue(arr, p, r);
-            partitionForSameValue(arr, p, partition[0] - 1);
+    private static void quickSortForSameValue(int[] arr, int r) {
+        if (0 < r) {
+            int[] partition = partitionForSameValue(arr, 0, r);
+            partitionForSameValue(arr, 0, partition[0] - 1);
             partitionForSameValue(arr, partition[1], r);
         }
     }
@@ -98,5 +98,34 @@ public class QuickSort {
             tailRecursiveQuickSort(arr, p, q - 1);
             p = q + 1;
         }
+    }
+
+    public static void doubleEndQuickSort(int[] array, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int mid = doubleEndPartition(array, left, right);
+        doubleEndQuickSort(array, left, mid - 1);
+        doubleEndQuickSort(array, mid + 1, right);
+    }
+
+    public static int doubleEndPartition(int[] array,int leftBound, int rightBound) {
+        int key = array[rightBound];
+        int left = leftBound;
+        int right = rightBound - 1;
+
+        while (left <= right) {
+            while (left <= right && array[left] <= key) {
+                left++;
+            }
+            while (left <= right && array[right] > key) {
+                right--;
+            }
+            if (left < right) {
+                swap(array, left, right);
+            }
+        }
+        swap(array, left, rightBound);
+        return left;
     }
 }

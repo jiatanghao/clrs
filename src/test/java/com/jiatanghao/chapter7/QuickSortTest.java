@@ -3,6 +3,8 @@ package com.jiatanghao.chapter7;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 class QuickSortTest {
 
     @Test
@@ -35,5 +37,12 @@ class QuickSortTest {
         int[] result = {1, 2, 2, 2, 2, 6, 7, 8};
         QuickSort.tailRecursiveQuickSort(arr);
         Assertions.assertArrayEquals(result, arr);
+    }
+
+    @Test
+    void doubleEndQuickSort() {
+        int[] arr = {1, 4, 6, 5, 10, 6, 2, 3, 9, 8, 7, 6};
+        QuickSort.doubleEndQuickSort(arr, 0, arr.length - 1);
+        System.out.println(Arrays.toString(arr));
     }
 }
