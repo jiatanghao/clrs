@@ -21,6 +21,26 @@ public class BasicAlgorithm {
         }
     }
 
+    public static void shellSort(int[] array) {
+        for (int h = computeShellGap(array); h >= 1; h = (h - 1) / 3) {
+            for (int i = h; i < array.length; i++) {
+                for (int j = i; j > h - 1; j -= h) {
+                    if (array[j] < array[j-h]) {
+                        swap(array, j - h, j);
+                    }
+                }
+            }
+        }
+    }
+
+    private static int computeShellGap(int[] arr) {
+        int h = 1;
+        while (h < arr.length) {
+            h = 3 * h + 1;
+        }
+        return h;
+    }
+
     private static int binarySearchForInsertSort(int[] array, int hi, int key) {
         int left = 0;
         int right = hi;

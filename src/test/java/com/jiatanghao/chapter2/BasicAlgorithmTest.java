@@ -1,5 +1,6 @@
 package com.jiatanghao.chapter2;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -123,5 +124,12 @@ class BasicAlgorithmTest {
         final double[] array = {0, 1, 2, 3};
         assertEquals(6, BasicAlgorithm.hornerRule(array, 1));
         assertEquals(11, BasicAlgorithm.hornerRule(array, 2));
+    }
+
+    @Test
+    void testShellSort() {
+        int[] arr = {9, 6, 11, 3, 5, 12, 8, 7, 10, 15, 14, 4, 1, 13, 2};
+        BasicAlgorithm.shellSort(arr);
+        Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, arr);
     }
 }
