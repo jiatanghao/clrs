@@ -91,7 +91,7 @@ class BasicAlgorithmTest {
 
     @Test
     void bubbleSort() {
-        final int[] array = {5, 2, 4, 6, 1, 3};
+        final int[] array = {6, 5, 4, 3, 1, 2};
         BasicAlgorithm.bubbleSort(array);
         assertArrayEquals(sortedArray, array);
     }
