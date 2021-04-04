@@ -2,6 +2,8 @@ package com.jiatanghao.chapter2;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BasicAlgorithmTest {
@@ -36,7 +38,10 @@ class BasicAlgorithmTest {
         assertArrayEquals(new int[]{0, 1, 1, 1, 0}, BasicAlgorithm.binaryAdd(a, b));
         assertArrayEquals(new int[]{1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(a, c));
         assertArrayEquals(new int[]{1, 0, 0, 1, 0}, BasicAlgorithm.binaryAdd(c, a));
-        assertThrows(IllegalArgumentException.class, () -> BasicAlgorithm.binaryAdd(a, d), "数组长度不一致");
+        assertThrows(IllegalArgumentException.class, () -> {
+            int[] result = BasicAlgorithm.binaryAdd(a, d);
+            System.out.println(Arrays.toString(result));
+        }, "数组长度不一致");
     }
 
     @Test
@@ -44,6 +49,9 @@ class BasicAlgorithmTest {
         final int[] array = {5, 2, 4, 6, 1, 3};
         BasicAlgorithm.selectSort(array);
         assertArrayEquals(sortedArray, array);
+        final int[] array2 = {5, 7, 2, 4, 6, 1, 3};
+        BasicAlgorithm.selectSort(array2);
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5, 6, 7}, array2);
     }
 
     @Test

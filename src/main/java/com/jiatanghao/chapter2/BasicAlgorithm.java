@@ -84,14 +84,18 @@ public class BasicAlgorithm {
      * @param array 待排序的数组
      */
     public static void selectSort(int[] array) {
-        for (int i = 0; i < array.length - 1; i++) {
+        for (int i = 0; i <= array.length / 2; i++) {
             int min = i;
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[j] < array[min]) {
+            int max = i;
+            for (int j = i + 1; j < array.length - i; j++) {
+                if (array[j] >  array[max]) {
+                    max = j;
+                } else if (array[j] < array[min]) {
                     min = j;
                 }
             }
             swap(array, i, min);
+            swap(array, array.length - i - 1, max);
         }
     }
 
